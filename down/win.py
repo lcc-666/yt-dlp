@@ -4,15 +4,23 @@ import yt_dlp
 
 
 def down(url, path):
-    res = os.path.abspath(sys.argv[0])
-    path = res.replace("win.py", "")
+    if path is "":
+        res = os.path.abspath(sys.argv[0])
+        path = res.replace("win.py", "")
     url = url
     path = path + "\\"
     opts = {
-        "outtmpl": path + '%(title)s.%(ext)s'
+        "outtmpl": path + '%(title)s.%(ext)s',
+        # 'listformats': True,
+        'noplaylist': True
     }
     ydl = yt_dlp.YoutubeDL(opts)
     ydl.download([url])
+    # result = ydl.extract_info(
+    #     url,  # 视频链接
+    #     download=True,  # 不下载只是抽取信息
+    # )
+    print()
 
 
 if __name__ == '__main__':
