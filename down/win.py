@@ -9,18 +9,14 @@ def down(url, path):
         path = res.replace("win.py", "")
     url = url
     path = path + "\\"
-    opts = {
-        "outtmpl": path + '%(title)s.%(ext)s',
-        # 'listformats': True,
-        'noplaylist': True
-    }
-    ydl = yt_dlp.YoutubeDL(opts)
-    ydl.download([url])
-    # result = ydl.extract_info(
-    #     url,  # 视频链接
-    #     download=True,  # 不下载只是抽取信息
-    # )
-    print()
+    for item in ["bestvideo", "bestaudio"]:
+        opts = {
+            "format": item,
+            "outtmpl": path + '%(title)s.%(ext)s',
+        }
+        ydl = yt_dlp.YoutubeDL(opts)
+        ydl.download([url])
+
 
 
 if __name__ == '__main__':
