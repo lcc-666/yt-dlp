@@ -1,22 +1,33 @@
 import os
 import sys
 import yt_dlp
-
+from merge.m4a.mp4 import merge
 
 def down(url, path):
-    if path is "":
-        res = os.path.abspath(sys.argv[0])
-        path = res.replace("win.py", "")
+    if path=="":
+        path=os.path.abspath(sys.argv[0]).replace("main.py","")
+    else:
+        path=path+"\\"
+    res = os.path.abspath(sys.argv[0]).replace("main.py","down\\")
     url = url
-    path = path + "\\"
+    inputs={}
     for item in ["bestvideo", "bestaudio"]:
         opts = {
             "format": item,
-            "outtmpl": path + '%(title)s.%(ext)s',
+            "outtmpl": res + '%(title)s.%(ext)s',
+            "noplaylist":True
         }
         ydl = yt_dlp.YoutubeDL(opts)
-        ydl.download([url])
-
+        # ydl.download([url])
+        result = ydl.extract_info(
+            url,  # 视频链接
+        )
+        title = result["title"]
+        type = result['ext']
+        inputs[res+title+"."+type]=None
+    merge(inputs,path,title)
+    for i in inputs:
+        os.remove(i)
 
 
 if __name__ == '__main__':
