@@ -3,13 +3,13 @@ import sys
 import yt_dlp
 from merge.m4a.mp4 import merge
 
-def down(url, path):
-    if path=="":
+def down(detail:tuple):
+    if detail["path"]=="":
         path=os.path.abspath(sys.argv[0]).replace("main.py","")
     else:
-        path=path+"\\"
+        path=detail["path"]+"\\"
     res = os.path.abspath(sys.argv[0]).replace("main.py","down\\")
-    url = url
+    url = detail["url"]
     inputs={}
     for item in ["bestvideo", "bestaudio"]:
         opts = {
@@ -25,7 +25,8 @@ def down(url, path):
         title = result["title"]
         type = result['ext']
         inputs[res+title+"."+type]=None
-    merge(inputs,path,title)
+    ffmpeg=detail["ffmpeg"]
+    merge(inputs,path,title,ffmpeg)
     for i in inputs:
         os.remove(i)
 

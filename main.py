@@ -1,10 +1,17 @@
 from down.win import down
+
 """
 开始文件
 """
 if __name__ == '__main__':
     # url:youtube视频链接
-    Url = input("请输入视频地址\n")
+    Url = "https://www.bilibili.com/video/BV1aY4y1B74o?spm_id_from=333.851.b_7265636f6d6d656e64.1"
     # Path:存储目录，最好是空的
-    Path = input("请输入存储目录(默认当前文件目录)\n")
-    down(Url, Path)
+    Path = ""
+    ffmpeg = r"E:\ffmpeg\bin\ffmpeg.exe"
+    detail_inputs = {
+        "url": Url,
+        "path": Path,
+        "ffmpeg": ffmpeg
+    }
+    down(detail_inputs)

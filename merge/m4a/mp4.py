@@ -1,7 +1,7 @@
 from ffmpy3 import FFmpeg
 
 
-def merge(inputs,path,title,ffmpeg=r"E:\ffmpeg\bin\ffmpeg.exe"):
+def merge(inputs,path,title,ffmpeg):
     ff = FFmpeg(
         executable=ffmpeg,
         inputs=inputs,
