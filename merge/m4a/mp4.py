@@ -1,11 +1,11 @@
 from ffmpy3 import FFmpeg
 
 
-def merge(inputs,path,title,ffmpeg):
+def merge(inputs, save_path, title, ffmpeg_path):
     ff = FFmpeg(
-        executable=ffmpeg,
+        executable=ffmpeg_path,
         inputs=inputs,
-        outputs={path+title+".mp4": None}
+        outputs={save_path + title + ".mp4": None}
     )
     ff.run()
 
