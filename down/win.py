@@ -1,6 +1,7 @@
 import os
 import sys
 import yt_dlp
+import shutil
 from merge.m4a.mp4 import merge
 
 
@@ -12,7 +13,8 @@ def down(detail: dict):
     res = os.path.abspath(sys.argv[0]).replace("main.py", "down\\")
     url = detail["url"]
     inputs = {}
-    for item in ["bestvideo", "bestaudio"]:
+    down_type={"mp4":["bestvideo", "bestaudio"],"mp3":["bestaudio"]}
+    for item in down_type[detail["type"]]:
         opts = {
             "format": item,
             "outtmpl": res + '%(title)s.%(ext)s',
@@ -26,8 +28,13 @@ def down(detail: dict):
         title = result["title"]
         item_type = result['ext']
         inputs[res + title + "." + item_type] = None
-    ffmpeg = detail["ffmpeg"]
-    merge(inputs, path, title, ffmpeg)
+    if len(inputs) ==2:
+        ffmpeg = detail["ffmpeg"]
+        merge(inputs, path, title, ffmpeg)
+    else:
+        for i in inputs.keys():
+            shutil.copy(i,path+title+".mp3")
+
     for i in inputs:
         os.remove(i)
 
