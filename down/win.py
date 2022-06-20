@@ -53,7 +53,10 @@ def pornhub_down(detail: dict):
         path = detail["path"] + "\\"
     res = os.path.abspath(sys.argv[0]).replace("main.py", "down\\")
     url = detail["url"]
+    down_type = {"mp4": "best", "mp3": "worst"}
+    item=down_type[detail["type"]]
     opts = {
+        "format": item,
         "outtmpl": res + '%(title)s.%(ext)s',
         "noplaylist": True
     }
