@@ -8,6 +8,8 @@ from merge.m4a.mp4 import merge
 def down(detail: dict):
     if "pornhub" in detail["url"]:
         pornhub_down(detail)
+    else:
+        biliili_down(detail)
 
 
 # b站爬虫
