@@ -5,7 +5,7 @@ from down.win import down
 """
 if __name__ == '__main__':
     # url:B站视频
-    Url = "https://www.bilibili.com/video/BV1U3411k7VV?p=4&vd_source=161d770991feb7a2b647ccb79f47e675"
+    Url=input("请输入视频网址\n")
     # Path:存储目录，最好是空的
     Path = ""
     ffmpeg = r"E:\ffmpeg\bin\ffmpeg.exe"
