@@ -3,6 +3,7 @@ import sys
 import yt_dlp
 import shutil
 from merge.m4a.mp4 import merge
+from merge.m4a.mp4 import tomp3
 
 
 def down(detail: dict):
@@ -14,6 +15,10 @@ def down(detail: dict):
 
 # b站爬虫
 def biliili_down(detail: dict):
+    """
+    视频通过视频和音频合并生成
+    音频可直接获得最优音频
+    """
     if detail["path"] == "":
         path = os.path.abspath(sys.argv[0]).replace("main.py", "")
     else:
@@ -21,6 +26,7 @@ def biliili_down(detail: dict):
     res = os.path.abspath(sys.argv[0]).replace("main.py", "down\\")
     url = detail["url"]
     inputs = {}
+    title = ""
     down_type = {"mp4": ["bestvideo", "bestaudio"], "mp3": ["bestaudio"]}
     for item in down_type[detail["type"]]:
         opts = {
@@ -46,15 +52,18 @@ def biliili_down(detail: dict):
     for i in inputs:
         os.remove(i)
 
+
+# P站爬虫
 def pornhub_down(detail: dict):
-    if detail["path"] == "":
-        path = os.path.abspath(sys.argv[0]).replace("main.py", "")
-    else:
-        path = detail["path"] + "\\"
+    """
+    视频直接获取
+    音频通过ffmepg转换
+    """
+    path = os.path.abspath(sys.argv[0]).replace("main.py", "")
     res = os.path.abspath(sys.argv[0]).replace("main.py", "down\\")
     url = detail["url"]
     down_type = {"mp4": "best", "mp3": "worst"}
-    item=down_type[detail["type"]]
+    item = down_type[detail["type"]]
     opts = {
         "format": item,
         "outtmpl": res + '%(title)s.%(ext)s',
@@ -65,6 +74,15 @@ def pornhub_down(detail: dict):
     result = ydl.extract_info(
         url,  # 视频链接
     )
+    title = result["title"]
+    item_type = result['ext']
+    if detail['type'] is "mp3":
+        inputs = {res + title + "." + item_type: None}
+        ffmpeg = detail["ffmpeg"]
+        tomp3(inputs, path, title, ffmpeg)
+        os.remove(res + title + "." + item_type)
+    else:
+        shutil.move(res + title + "." + item_type, path + title + "." + item_type)
 
 
 if __name__ == '__main__':
