@@ -1,11 +1,22 @@
 from ffmpy3 import FFmpeg
 
 
+# 合并视频和音频
 def merge(inputs, save_path, title, ffmpeg_path):
     ff = FFmpeg(
         executable=ffmpeg_path,
         inputs=inputs,
         outputs={save_path + title + ".mp4": None}
+    )
+    ff.run()
+
+
+# MP4转换MP3
+def tomp3(inputs, save_path, title, ffmpeg_path):
+    ff = FFmpeg(
+        executable=ffmpeg_path,
+        inputs=inputs,
+        outputs={save_path + title + ".mp3": None}
     )
     ff.run()
 
