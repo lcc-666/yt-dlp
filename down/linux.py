@@ -19,7 +19,7 @@ def biliili_down(detail: dict):
     url = detail["url"]
     inputs = {}
     title = ""
-    down_type = {"mp4": "best", "mp3": "bestaudio"}
+    down_type = {"mp4": None, "mp3": "bestaudio"}
     item=down_type[detail["type"]]
     opts = {
         #'listformats': True,
@@ -34,8 +34,9 @@ def biliili_down(detail: dict):
     )
     title = result["title"]
     item_type = result['ext']
-    if detail["type"] is "mp3":
-        shutil.move(res+title+"."+item_type,path+title+"."+detail["type"])
+    # if detail["type"] is "mp3":
+    #     shutil.move(res+title+"."+item_type,path+title+"."+detail["type"])
+    shutil.move(res + title + "." + item_type, path + title + "." + detail["type"])
 
 
 if __name__ == '__main__':
