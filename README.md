@@ -32,7 +32,7 @@ if __name__ == '__main__':
     Url = input("请输入视频网址\n")
     # Path:存储目录，最好是空的(空字符代表当前目录,不建议修改)
     Path = ""
-    # ffmpeg所在位置
+    # ffmpeg所在位置(linux不需要配置,用空字符串即可)
     ffmpeg = r"E:\ffmpeg\bin\ffmpeg.exe"
     # 文件类型（视频:mp4,音频:mp3）
     Type = "mp4"
