@@ -1,4 +1,5 @@
-from down.win import down
+from down.win import down as win_down1
+from down.linux import biliili_down as linux_down
 
 """
 开始文件
@@ -9,11 +10,12 @@ if __name__ == '__main__':
     # Path:存储目录，最好是空的
     Path = ""
     ffmpeg = r"E:\ffmpeg\bin\ffmpeg.exe"
-    Type = "mp3"
+    Type = "mp4"
     detail_inputs = {
         "url": Url,
         "path": Path,
         "ffmpeg": ffmpeg,
         "type": Type
     }
-    down(detail_inputs)
+    #win_down1(detail_inputs)
+    linux_down(detail_inputs)
