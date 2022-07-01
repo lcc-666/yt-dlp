@@ -1,5 +1,6 @@
 # yt-dlp
 一个基于yt-dlp的python程序，在yt-dlp上进行了简单的封装，将不常用的功能封装，只留下一些常用的功能。
+(目前仅支持单个文件的爬取)
 
 ### 环境准备
 建议使用[python官网](https://www.python.org/)3.7版本+[ffmpeg](https://ffmpeg.org/)
