@@ -1,5 +1,6 @@
 from down.win import down as win_down1
 from down.linux import biliili_down as linux_down
+import os
 
 """
 开始文件
@@ -17,5 +18,8 @@ if __name__ == '__main__':
         "ffmpeg": ffmpeg,
         "type": Type
     }
-    #win_down1(detail_inputs)
-    linux_down(detail_inputs)
+
+    if os.name is 'nt':
+        win_down1(detail_inputs)
+    elif os.name is 'posix':
+        linux_down(detail_inputs)
