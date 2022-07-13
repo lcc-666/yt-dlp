@@ -16,27 +16,24 @@ def biliili_down(detail: dict):
     else:
         path = detail["path"] + "\\"
     res = os.path.abspath(sys.argv[0]).replace("main.py", "down/")
-    url = detail["url"]
-    inputs = {}
-    title = ""
+    URL = detail["url"]
     down_type = {"mp4": None, "mp3": "bestaudio"}
-    item=down_type[detail["type"]]
+    item = down_type[detail["type"]]
     opts = {
-        #'listformats': True,
+        # 'listformats': True,
         "format": item,
         "outtmpl": res + '%(title)s.%(ext)s',
         "noplaylist": True
     }
     ydl = yt_dlp.YoutubeDL(opts)
     # ydl.download([url])
-    result = ydl.extract_info(
-        url,  # 视频链接
-    )
-    title = result["title"]
-    item_type = result['ext']
-    # if detail["type"] is "mp3":
-    #     shutil.move(res+title+"."+item_type,path+title+"."+detail["type"])
-    shutil.move(res + title + "." + item_type, path + title + "." + detail["type"])
+    for url in URL:
+        result = ydl.extract_info(
+            url,  # 视频链接
+        )
+        title = result["title"]
+        item_type = result['ext']
+        shutil.move(res + title + "." + item_type, path + title + "." + detail["type"])
 
 
 if __name__ == '__main__':
