@@ -24,33 +24,34 @@ def biliili_down(detail: dict):
     else:
         path = detail["path"] + "\\"
     res = os.path.abspath(sys.argv[0]).replace("main.py", "down\\")
-    url = detail["url"]
-    inputs = {}
+    URL = detail["url"]
+
     title = ""
     down_type = {"mp4": ["bestvideo", "bestaudio"], "mp3": ["bestaudio"]}
-    for item in down_type[detail["type"]]:
-        opts = {
-            "format": item,
-            "outtmpl": res + '%(title)s.%(ext)s',
-            "noplaylist": True
-        }
-        ydl = yt_dlp.YoutubeDL(opts)
-        # ydl.download([url])
-        result = ydl.extract_info(
-            url,  # 视频链接
-        )
-        title = result["title"]
-        item_type = result['ext']
-        inputs[res + title + "." + item_type] = None
-    if len(inputs) == 2:
-        ffmpeg = detail["ffmpeg"]
-        merge(inputs, path, title, ffmpeg)
-    else:
-        for i in inputs.keys():
-            shutil.copy(i, path + title + ".mp3")
-
-    for i in inputs:
-        os.remove(i)
+    for url in URL:
+        inputs = {}
+        for item in down_type[detail["type"]]:
+            opts = {
+                "format": item,
+                "outtmpl": res + '%(title)s.%(ext)s',
+                "noplaylist": True
+            }
+            ydl = yt_dlp.YoutubeDL(opts)
+            # ydl.download([url])
+            result = ydl.extract_info(
+                url,  # 视频链接
+            )
+            title = result["title"]
+            item_type = result['ext']
+            inputs[res + title + "." + item_type] = None
+        if len(inputs) == 2:
+            ffmpeg = detail["ffmpeg"]
+            merge(inputs, path, title, ffmpeg)
+            for i in inputs.keys():
+                os.remove(i)
+        else:
+            for i in inputs.keys():
+                shutil.move(i, path + title + ".mp3")
 
 
 # P站爬虫
@@ -61,7 +62,7 @@ def pornhub_down(detail: dict):
     """
     path = os.path.abspath(sys.argv[0]).replace("main.py", "")
     res = os.path.abspath(sys.argv[0]).replace("main.py", "down\\")
-    url = detail["url"]
+    url = detail["url"][0]
     down_type = {"mp4": "best", "mp3": "worst"}
     item = down_type[detail["type"]]
     opts = {

@@ -7,13 +7,21 @@ import os
 """
 if __name__ == '__main__':
     # url:B站视频
-    Url = input("请输入视频网址\n")
+    URL=[]
+    print("请输入视频网址\n")
+    while True:
+        Url = input()
+        if Url is "":
+            break
+        else:
+            URL.append(Url)
+
     # Path:存储目录，最好是空的
     Path = ""
     ffmpeg = r"E:\ffmpeg\bin\ffmpeg.exe"
     Type = "mp4"
     detail_inputs = {
-        "url": Url,
+        "url": URL,
         "path": Path,
         "ffmpeg": ffmpeg,
         "type": Type
