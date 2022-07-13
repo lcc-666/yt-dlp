@@ -55,6 +55,6 @@ if __name__ == '__main__':
     elif os.name is 'posix':
         linux_down(detail_inputs)
 ```
-![img.png](png/2.png)
+![输入](png/2.png)
 
-![img.png](png/1.png)
+![输出](png/1.png)
