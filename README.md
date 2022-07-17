@@ -50,5 +50,8 @@ if __name__ == '__main__':
         win_down1(detail_inputs)
     elif os.name is 'posix':
         linux_down(detail_inputs)
-
 ```
+
+![image](https://user-images.githubusercontent.com/81516638/179391874-af3910cf-44dc-4f42-8584-b8769b2fcec2.png)
+![image](https://user-images.githubusercontent.com/81516638/179391902-d7b57b9e-ccb6-4272-b2a0-8fe028c2b437.png)
+
