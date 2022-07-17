@@ -28,18 +28,23 @@ import os
 """
 开始文件
 """
-
 if __name__ == '__main__':
     # url:B站视频
-    Url = input("请输入视频网址\n")
-    # Path:存储目录，最好是空的(空字符代表当前目录,不建议修改)
+    URL=[]
+    print("请输入视频网址\n")
+    while True:
+        Url = input()
+        if Url is "":
+            break
+        else:
+            URL.append(Url)
+
+    # Path:存储目录，最好是空的
     Path = ""
-    # ffmpeg所在位置(linux不需要配置,用空字符串即可)
     ffmpeg = r"E:\ffmpeg\bin\ffmpeg.exe"
-    # 文件类型（视频:mp4,音频:mp3）
     Type = "mp4"
     detail_inputs = {
-        "url": Url,
+        "url": URL,
         "path": Path,
         "ffmpeg": ffmpeg,
         "type": Type
@@ -50,3 +55,6 @@ if __name__ == '__main__':
     elif os.name is 'posix':
         linux_down(detail_inputs)
 ```
+![输入](png/2.png)
+
+![输出](png/1.png)
