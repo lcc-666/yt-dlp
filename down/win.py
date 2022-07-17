@@ -18,8 +18,7 @@ def down(detail: dict):
 # b站爬虫
 def biliili_down(detail: dict):
     """
-    视频通过视频和音频合并生成
-    音频可直接获得最优音频
+    获取视频/音频
     """
     path = os.path.abspath(sys.argv[0]).replace("main.py", "")
     URLS = detail["url"]
@@ -27,22 +26,26 @@ def biliili_down(detail: dict):
     ydl_opts = {
         'noplaylist': True,
         'format': 'bestaudio',
+        "outtmpl": path + '%(title)s.%(ext)s'
     }
     down_type = {"mp4": None, "mp3": ydl_opts}
 
-    if down_type[detail["type"]] is "mp4":
-        with YoutubeDL() as ydl:
+    if detail["type"] is "mp4":
+        ydl_opts["format"]=None
+        with YoutubeDL(ydl_opts) as ydl:
             ydl.download(URLS)
     else:
-        with YoutubeDL(down_type[detail["type"]]) as ydl:
-            for item in URLS:
-                result = ydl.extract_info(item)
-                item_dict = result
-                title = item_dict["title"]
-                get_type = item_dict["ext"]
-                old_name = path + title + " " + "[{}]".format(item_dict["id"]) + "." + get_type
-                new_name = path + title + "." + detail["type"]
-                os.rename(old_name, new_name)
+        ydl_opts["outtmpl"]=path + '%(title)s.mp3'
+        with YoutubeDL(ydl_opts) as ydl:
+            ydl.download(URLS)
+            # for item in URLS:
+            #     result = ydl.extract_info(item)
+            #     item_dict = result
+            #     title = item_dict["title"]
+            #     get_type = item_dict["ext"]
+            #     old_name = path + title + " " + "[{}]".format(item_dict["id"]) + "." + get_type
+            #     new_name = path + title + "." + detail["type"]
+            #     os.rename(old_name, new_name)
 
 
 # P站爬虫

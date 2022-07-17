@@ -7,8 +7,8 @@ import os
 """
 if __name__ == '__main__':
     # url:B站视频
-    URL=[]
-    print("请输入视频网址\n",end="")
+    URL = []
+    print("请输入视频网址(可多个)\n", end="")
     while True:
         Url = input()
         if Url is "":
