@@ -16,12 +16,9 @@ if __name__ == '__main__':
         else:
             URL.append(Url)
 
-    # Path:存储目录，最好是空的
-    Path = ""
     Type = "mp3"
     detail_inputs = {
         "url": URL,
-        "path": Path,
         "type": Type
     }
 

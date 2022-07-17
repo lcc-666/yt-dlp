@@ -21,11 +21,7 @@ def biliili_down(detail: dict):
     视频通过视频和音频合并生成
     音频可直接获得最优音频
     """
-    if detail["path"] == "":
-        path = os.path.abspath(sys.argv[0]).replace("main.py", "")
-    else:
-        path = detail["path"] + "\\"
-    res = os.path.abspath(sys.argv[0]).replace("main.py", "down\\")
+    path = os.path.abspath(sys.argv[0]).replace("main.py", "")
     URLS = detail["url"]
 
     ydl_opts = {
