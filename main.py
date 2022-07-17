@@ -8,7 +8,7 @@ import os
 if __name__ == '__main__':
     # url:B站视频
     URL=[]
-    print("请输入视频网址\n")
+    print("请输入视频网址\n",end="")
     while True:
         Url = input()
         if Url is "":
@@ -18,12 +18,10 @@ if __name__ == '__main__':
 
     # Path:存储目录，最好是空的
     Path = ""
-    ffmpeg = r"E:\ffmpeg\bin\ffmpeg.exe"
-    Type = "mp4"
+    Type = "mp3"
     detail_inputs = {
         "url": URL,
         "path": Path,
-        "ffmpeg": ffmpeg,
         "type": Type
     }
 
