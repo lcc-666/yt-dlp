@@ -16,7 +16,7 @@ def biliili_down(detail: dict):
     """
     获取视频/音频
     """
-    path = os.path.abspath(sys.argv[0]).replace("main.py", "")
+    path = os.path.abspath(".")+"\\"
     URLS = detail["url"]
 
     ydl_opts = {

@@ -16,7 +16,7 @@ if __name__ == '__main__':
         else:
             URL.append(Url)
 
-    Type = "mp3"
+    Type = "mp4"
     detail_inputs = {
         "url": URL,
         "type": Type
