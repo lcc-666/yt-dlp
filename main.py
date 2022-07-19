@@ -11,7 +11,7 @@ if __name__ == '__main__':
     print("请输入视频网址(可多个)\n", end="")
     while True:
         Url = input()
-        if Url is "":
+        if Url == "":
             break
         else:
             URL.append(Url)
@@ -22,7 +22,7 @@ if __name__ == '__main__':
         "type": Type
     }
 
-    if os.name is 'nt':
+    if os.name == 'nt':
         win_down1(detail_inputs)
-    elif os.name is 'posix':
+    elif os.name == 'posix':
         linux_down(detail_inputs)
