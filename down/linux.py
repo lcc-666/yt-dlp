@@ -17,7 +17,7 @@ def biliili_down(detail: dict):
         "outtmpl": path + '%(title)s.%(ext)s'
     }
     if detail["type"] == "mp4":
-        ydl_opts.pop('format')
+        ydl_opts["format"] = None
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download(URLS)
     else:
