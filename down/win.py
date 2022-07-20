@@ -1,10 +1,10 @@
 import os
 import sys
 import yt_dlp
-from yt_dlp import YoutubeDL
+import down.same
 
 
-def down(detail: dict):
+def Down(detail: dict):
     if "pornhub" in detail["url"][0]:
         pornhub_down(detail)
     else:
@@ -17,22 +17,8 @@ def biliili_down(detail: dict):
     获取视频/音频
     """
     path = os.path.abspath(".")+"\\"
-    URLS = detail["url"]
 
-    ydl_opts = {
-        'noplaylist': True,
-        'format': 'bestaudio',
-        "outtmpl": path + '%(title)s.%(ext)s'
-    }
-
-    if detail["type"] == "mp4":
-        ydl_opts["format"] = None
-        with YoutubeDL(ydl_opts) as ydl:
-            ydl.download(URLS)
-    else:
-        ydl_opts["outtmpl"] = path + '%(title)s.mp3'
-        with YoutubeDL(ydl_opts) as ydl:
-            ydl.download(URLS)
+    down.same.Down_video(path, detail)
 
 
 # P站爬虫

@@ -1,5 +1,5 @@
 import os
-from yt_dlp import YoutubeDL
+import down.same
 
 
 # b站爬虫
@@ -9,21 +9,8 @@ def biliili_down(detail: dict):
     音频可直接获得最优音频
     """
     path = os.path.abspath(".") + "/"
-    URLS = detail["url"]
 
-    ydl_opts = {
-        'noplaylist': True,
-        'format': 'bestaudio',
-        "outtmpl": path + '%(title)s.%(ext)s'
-    }
-    if detail["type"] == "mp4":
-        ydl_opts["format"] = None
-        with YoutubeDL(ydl_opts) as ydl:
-            ydl.download(URLS)
-    else:
-        ydl_opts["outtmpl"] = path + '%(title)s.mp3'
-        with YoutubeDL(ydl_opts) as ydl:
-            ydl.download(URLS)
+    down.same.Down_video(path, detail)
 
 
 if __name__ == '__main__':

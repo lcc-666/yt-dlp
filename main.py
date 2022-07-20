@@ -1,4 +1,4 @@
-from down.win import down as win_down1
+from down.win import Down as win_down1
 from down.linux import biliili_down as linux_down
 import os
 
