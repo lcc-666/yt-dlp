@@ -1,8 +1,5 @@
 import os
-import shutil
-import sys
-
-import yt_dlp
+from yt_dlp import YoutubeDL
 
 
 # b站爬虫
@@ -11,29 +8,22 @@ def biliili_down(detail: dict):
     视频通过视频和音频合并生成
     音频可直接获得最优音频
     """
-    if detail["path"] == "":
-        path = os.path.abspath(sys.argv[0]).replace("main.py", "")
-    else:
-        path = detail["path"] + "\\"
-    res = os.path.abspath(sys.argv[0]).replace("main.py", "down/")
-    URL = detail["url"]
-    down_type = {"mp4": None, "mp3": "bestaudio"}
-    item = down_type[detail["type"]]
-    opts = {
-        # 'listformats': True,
-        "format": item,
-        "outtmpl": res + '%(title)s.%(ext)s',
-        "noplaylist": True
+    path = os.path.abspath(".") + "/"
+    URLS = detail["url"]
+
+    ydl_opts = {
+        'noplaylist': True,
+        'format': 'bestaudio',
+        "outtmpl": path + '%(title)s.%(ext)s'
     }
-    ydl = yt_dlp.YoutubeDL(opts)
-    # ydl.download([url])
-    for url in URL:
-        result = ydl.extract_info(
-            url,  # 视频链接
-        )
-        title = result["title"]
-        item_type = result['ext']
-        shutil.move(res + title + "." + item_type, path + title + "." + detail["type"])
+    if detail["type"] == "mp4":
+        ydl_opts.pop('format')
+        with YoutubeDL(ydl_opts) as ydl:
+            ydl.download(URLS)
+    else:
+        ydl_opts["outtmpl"] = path + '%(title)s.mp3'
+        with YoutubeDL(ydl_opts) as ydl:
+            ydl.download(URLS)
 
 
 if __name__ == '__main__':
