@@ -7,22 +7,32 @@ import os
 """
 if __name__ == '__main__':
     # url:B站视频
-    URL = []
-    print("请输入视频网址(可多个)\n", end="")
     while True:
-        Url = input()
-        if Url == "":
-            break
+        Type = "mp4"
+        type_dict={"1":"mp4","2":"mp3"}
+        print(type_dict)
+        word=input("请输入获取类型,默认为MP4,不修改请直接回车")
+        if word == "":
+            pass
         else:
-            URL.append(Url)
+            Type=type_dict[word]
 
-    Type = "mp4"
-    detail_inputs = {
-        "url": URL,
-        "type": Type
-    }
+        URL = []
+        print("请输入视频网址(可多个)\n", end="")
+        while True:
+            Url = input()
+            if Url == "":
+                break
+            else:
+                URL.append(Url)
 
-    if os.name == 'nt':
-        win_down1(detail_inputs)
-    elif os.name == 'posix':
-        linux_down(detail_inputs)
+
+        detail_inputs = {
+            "url": URL,
+            "type": Type
+        }
+
+        if os.name == 'nt':
+            win_down1(detail_inputs)
+        elif os.name == 'posix':
+            linux_down(detail_inputs)
