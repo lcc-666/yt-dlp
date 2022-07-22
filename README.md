@@ -87,6 +87,8 @@ pip install pyinstaller
 ![image](https://user-images.githubusercontent.com/81516638/179967873-65774ea3-74ad-48e9-beef-dbd801585a87.png)
 
 
+![image](https://user-images.githubusercontent.com/81516638/180415800-c64a3d68-7a23-4b17-9ad4-bdd96d9902be.png)
+
 
 
 
