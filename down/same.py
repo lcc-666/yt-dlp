@@ -6,7 +6,7 @@ def Down_video(path, detail):
     URLS = detail["url"]
 
     ydl_opts = {
-        'noplaylist': True,
+        # 'noplaylist': True,
         'format': 'bestaudio',
         "outtmpl": path + '%(title)s.%(ext)s'
     }

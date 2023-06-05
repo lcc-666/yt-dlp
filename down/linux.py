@@ -8,7 +8,7 @@ def biliili_down(detail: dict):
     视频通过视频和音频合并生成
     音频可直接获得最优音频
     """
-    path = os.path.abspath(".") + "/"
+    path = os.path.abspath(".") + "/Downloads/"
 
     down.same.Down_video(path, detail)
 

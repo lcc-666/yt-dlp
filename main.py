@@ -11,7 +11,7 @@ if __name__ == '__main__':
         Type = "mp4"
         type_dict = {"1": "mp4", "2": "mp3"}
         print(type_dict)
-        word = input("请输入获取类型,默认为MP4,不修改请直接回车")
+        word = input("请输入获取类型,默认为MP4,不修改请直接回车\n")
         if word == "":
             pass
         else:
